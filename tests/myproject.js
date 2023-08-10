@@ -23,7 +23,7 @@ const testFunc = async () => {
   console.log("tx1 output value", fetchedValue.value.toString());
   
   // Update data from the account.
-  const value = new anchor.BN(40);
+  const value = new anchor.BN(69);
   
   let tx2 = await program.rpc.updateValue(value, {
     accounts: {
