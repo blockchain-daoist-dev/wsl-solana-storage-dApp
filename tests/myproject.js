@@ -7,8 +7,10 @@ const testFunc = async () => {
 
   const program = anchor.workspace.Myproject;
   const account = anchor.web3.Keypair.generate();
+ 
+  const initialStringValue = "Write a message..."; // Set your initial string value
 
-  let tx = await program.rpc.initialize({
+  let tx = await program.rpc.initialize(initialStringValue, {
     accounts: {
       initialAccount: account.publicKey,
       user: provider.wallet.publicKey,
@@ -23,9 +25,9 @@ const testFunc = async () => {
   console.log("tx1 output value", fetchedValue.value.toString());
   
   // Update data from the account.
-  const value = new anchor.BN(69);
+  const newValue = "Hello World!";
   
-  let tx2 = await program.rpc.updateValue(value, {
+  let tx2 = await program.rpc.updateValue(newValue, {
     accounts: {
       storageAccount: account.publicKey,
     },

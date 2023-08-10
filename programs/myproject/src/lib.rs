@@ -6,18 +6,17 @@ declare_id!("B1oXQn9bM35wGjMd7tcvmafhy7DHkfNUtcKZ6U9p4giL");
 pub mod myproject {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
+    pub fn initialize(ctx: Context<Initialize>, initial_value: String) -> Result<()> {
         let initial_account = &mut ctx.accounts.initial_account;
-        initial_account.value = 0;
+        initial_account.value = initial_value;
         Ok(())
     }
 
-    pub fn update_value(ctx: Context<UpdateValue>, value: u64) -> Result<()> {
+    pub fn update_value(ctx: Context<UpdateValue>, new_value: String) -> Result<()> {
         let storage_account = &mut ctx.accounts.storage_account;
-        storage_account.value = value;
+        storage_account.value = new_value;
         Ok(())
     }
-
 }
 
 #[derive(Accounts)]
@@ -37,5 +36,5 @@ pub struct UpdateValue<'info> {
 
 #[account]
 pub struct Init {
-    pub value: u64,
+    pub value: String,
 }
