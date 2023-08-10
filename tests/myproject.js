@@ -17,10 +17,24 @@ const testFunc = async () => {
 
     signers: [account],
   });
-  console.log("Your transaction tx", tx);
+  console.log("Your tx1 signature", tx);
   // Fetch data from the account.
   let fetchedValue = await program.account.init.fetch(account.publicKey);
-  console.log("output value", fetchedValue.value.toString());
+  console.log("tx1 output value", fetchedValue.value.toString());
+  
+  // Update data from the account.
+  const value = new anchor.BN(40);
+  
+  let tx2 = await program.rpc.updateValue(value, {
+    accounts: {
+      storageAccount: account.publicKey,
+    },
+    // signers: [account],
+  })
+  console.log('Your tx2 signature', tx2);
+  
+  let fetchedValue2 = await program.account.init.fetch(account.publicKey);
+  console.log("tx2 output value", fetchedValue2.value.toString());
 };
 
 const runTest = async () => {
