@@ -1,14 +1,14 @@
 [features]
 seeds = false
 skip-lint = false
-[programs.localnet]
+[programs.devnet]
 myproject = "B1oXQn9bM35wGjMd7tcvmafhy7DHkfNUtcKZ6U9p4giL"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/home/daoist/.config/solana/id.json"
 
 [scripts]

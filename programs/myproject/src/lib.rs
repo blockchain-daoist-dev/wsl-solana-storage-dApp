@@ -6,9 +6,9 @@ declare_id!("B1oXQn9bM35wGjMd7tcvmafhy7DHkfNUtcKZ6U9p4giL");
 pub mod myproject {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>, initial_value: String) -> Result<()> {
+    pub fn initialize(ctx: Context<Initialize> ) -> Result<()> {
         let initial_account = &mut ctx.accounts.initial_account;
-        initial_account.value = initial_value;
+        initial_account.value = String::from("Write your first message!");
         Ok(())
     }
 

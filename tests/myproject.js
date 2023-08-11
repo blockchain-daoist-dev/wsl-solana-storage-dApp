@@ -7,10 +7,9 @@ const testFunc = async () => {
 
   const program = anchor.workspace.Myproject;
   const account = anchor.web3.Keypair.generate();
- 
-  const initialStringValue = "Write a message..."; // Set your initial string value
 
-  let tx = await program.rpc.initialize(initialStringValue, {
+
+  let tx = await program.rpc.initialize({
     accounts: {
       initialAccount: account.publicKey,
       user: provider.wallet.publicKey,
@@ -23,10 +22,10 @@ const testFunc = async () => {
   // Fetch data from the account.
   let fetchedValue = await program.account.init.fetch(account.publicKey);
   console.log("tx1 output value", fetchedValue.value.toString());
-  
+
   // Update data from the account.
   const newValue = "Hello World!";
-  
+
   let tx2 = await program.rpc.updateValue(newValue, {
     accounts: {
       storageAccount: account.publicKey,
@@ -34,7 +33,7 @@ const testFunc = async () => {
     // signers: [account],
   })
   console.log('Your tx2 signature', tx2);
-  
+
   let fetchedValue2 = await program.account.init.fetch(account.publicKey);
   console.log("tx2 output value", fetchedValue2.value.toString());
 };
